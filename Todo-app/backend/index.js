@@ -16,9 +16,7 @@ app.use(
 );
 
 app.post("/todo", createMiddleWare, async (req, res) => {
-  console.log("get / hitted");
   const createBody = req.body;
-  console.log(createBody);
   await Todo.create({
     title: createBody.title,
     description: createBody.description,
@@ -30,7 +28,6 @@ app.post("/todo", createMiddleWare, async (req, res) => {
 });
 
 app.get("/todos", async (req, res) => {
-  //gettinf all from mongodb
   const todos = await Todo.find({});
   res.json({
     todos: todos,
@@ -38,7 +35,6 @@ app.get("/todos", async (req, res) => {
 });
 
 app.put("/completed", updateMiddleWare, async (req, res) => {
-  //updating mongodb
   await Todo.updateOne(
     {
       _id: req.body.id,
