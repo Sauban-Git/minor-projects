@@ -19,6 +19,22 @@ export function Todos({ todos, setTodos }) {
       .catch((err) => console.error("Error updating todo:", err));
   };
 
+  const todoDelete = (id) => {
+    fetch("http://localhost:3000/delete", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        // Update local state
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+      })
+      .catch((err) => console.error("Error updating todo:", err));
+  };
+
   return (
     <div>
       {todos.map((todo) => (
@@ -41,6 +57,7 @@ export function Todos({ todos, setTodos }) {
             {todo.completed ? "Completed" : "Mark as Done"}
           </button>
           <button
+            onClick={() => todoDelete(todo._id)}
             style={{
               margin: 10,
             }}

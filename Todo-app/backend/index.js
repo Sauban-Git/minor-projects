@@ -52,6 +52,15 @@ app.put("/completed", updateMiddleWare, async (req, res) => {
   });
 });
 
+app.delete("/delete", updateMiddleWare, async (req, res) => {
+  await Todo.deleteOne({
+    _id: req.body.id,
+  });
+  res.json({
+    msg: "Deleted"
+  })
+});
+
 app.listen(port, "0.0.0.0", () => {
   console.log(`App starting on port: ${port}`);
 });
