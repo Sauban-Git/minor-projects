@@ -1,16 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { CreateTodo } from "./comp/CreateTodo";
+import "./App.css";
+import { Todos } from "./comp/Todos";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+  
+
+  useEffect(() => {
+    fetch("http://localhost:3000/todos")
+      .then(async (res) => {
+        const json = await res.json();
+        setTodos(json.todos);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch todos:", err);
+      });
+  }, []);
 
   return (
     <div>
-      Hi There!
+      <CreateTodo setTodos={setTodos} todos={todos}/>
+      <Todos setTodos={setTodos} todos={todos} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
