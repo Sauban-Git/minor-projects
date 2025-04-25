@@ -9,7 +9,6 @@ export function Todos({ todos, setTodos }) {
     })
       .then((res) => res.json())
       .then(() => {
-        // Update local state
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
             todo._id === id ? { ...todo, completed: true } : todo
@@ -29,7 +28,6 @@ export function Todos({ todos, setTodos }) {
     })
       .then((res) => res.json())
       .then(() => {
-        // Update local state
         setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
       })
       .catch((err) => console.error("Error updating todo:", err));
@@ -43,7 +41,6 @@ export function Todos({ todos, setTodos }) {
             padding: 10,
             margin: 10,
             color: "wheat",
-            background: "#2C2C2C",
           }}
         >
           <h1>{todo.title}</h1>

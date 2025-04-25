@@ -68,5 +68,3 @@ export function CreateTodo({ todos, setTodos }) {
     </div>
   );
 }
-// module.exports = CreateTodo
-// export default CreateTodo;
