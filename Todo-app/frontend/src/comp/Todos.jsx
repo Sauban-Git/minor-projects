@@ -1,5 +1,9 @@
 export function Todos({ todos, setTodos }) {
   const markAsDone = (id) => {
+    const todo = todos.find((t) => t._id === id);
+    if (todo?.completed) {
+      return;
+    }
     fetch("http://localhost:3000/completed", {
       method: "PUT",
       body: JSON.stringify({ id }),
@@ -36,15 +40,15 @@ export function Todos({ todos, setTodos }) {
   return (
     <div>
       {todos.map((todo) => (
-        <div
+        <ul
           style={{
             padding: 10,
             margin: 10,
             color: "wheat",
           }}
         >
-          <h1>{todo.title}</h1>
-          <h2>{todo.description}</h2>
+          <li>{todo.title}</li>
+          <li>{todo.description}</li>
           <button
             style={{
               margin: 10,
@@ -61,7 +65,7 @@ export function Todos({ todos, setTodos }) {
           >
             Delete
           </button>
-        </div>
+        </ul>
       ))}
     </div>
   );

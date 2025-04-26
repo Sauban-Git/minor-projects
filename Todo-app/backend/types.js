@@ -5,6 +5,10 @@ const createTodo = zod.object({
   description: zod.string(),
 });
 
+const findTodo = zod.object({
+  id: zod.number
+})
+
 const updateTodo = zod.object({
   id: zod.string(),
 });
@@ -12,4 +16,5 @@ const updateTodo = zod.object({
 module.exports = {
   createTodo: createTodo,
   updateTodo: updateTodo,
+  findTodo: findTodo,
 };
