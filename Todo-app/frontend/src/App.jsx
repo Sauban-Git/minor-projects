@@ -1,27 +1,15 @@
-import { useState, useEffect } from "react";
 import { CreateTodo } from "./comp/CreateTodo";
 import "./App.css";
 import { Todos } from "./comp/Todos";
+import { RecoilRoot } from "recoil";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  
-
-  useEffect(() => {
-    fetch("http://localhost:3000/todos")
-      .then(async (res) => {
-        const json = await res.json();
-        setTodos(json.todos);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch todos:", err);
-      });
-  }, []);
-
   return (
     <div>
-      <CreateTodo setTodos={setTodos} />
-      <Todos setTodos={setTodos} todos={todos} />
+      <RecoilRoot>
+        <CreateTodo />
+        <Todos />
+      </RecoilRoot>
     </div>
   );
 }

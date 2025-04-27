@@ -1,4 +1,20 @@
-export function Todos({ todos, setTodos }) {
+import { useRecoilState } from "recoil";
+import { todosAtoms } from "../store/atoms/AllTodo";
+import { useEffect } from "react";
+
+export function Todos() {
+  const [todos, setTodos] = useRecoilState(todosAtoms);
+  useEffect(() => {
+    fetch("http://localhost:3000/todos")
+      .then(async (res) => {
+        const json = await res.json();
+        setTodos(json.todos);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch todos:", err);
+      });
+  }, []);
+
   const markAsDone = (id) => {
     const todo = todos.find((t) => t._id === id);
     if (todo?.completed) {
@@ -41,6 +57,7 @@ export function Todos({ todos, setTodos }) {
     <div>
       {todos.map((todo) => (
         <ul
+        key={todo._id}
           style={{
             padding: 10,
             margin: 10,
