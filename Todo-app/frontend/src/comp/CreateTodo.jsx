@@ -1,4 +1,4 @@
-import { memo, useMemo, useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 export const CreateTodo = memo( function ({  setTodos }) {
   const titleRef = useRef();
