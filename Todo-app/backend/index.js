@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"], // your frontend's IP
+    origin: ["http://localhost:5173", "http://localhost:5174", "http://192.168.144.251:5173"], // your frontend's IP
     credentials: true,
   })
 );

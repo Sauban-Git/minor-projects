@@ -119,39 +119,32 @@ export function Todos() {
   );
 
   const renderTodo = (todo, markDone, deleteTodo) => (
-    <ul
-      key={todo._id}
-      style={{
-        padding: 10,
-        margin: 10,
-        color: "wheat",
-      }}
-    >
-      <li>{todo.title}</li>
-      <li>{todo.description}</li>
-      <button
-        style={{
-          margin: 10,
-        }}
-        onClick={() => markDone(todo._id)}
-      >
-        {todo.completed ? "Completed" : "Mark as Done"}
-      </button>
-      <button
-        onClick={() => deleteTodo(todo._id)}
-        style={{
-          margin: 10,
-        }}
-      >
-        Delete
-      </button>
-    </ul>
+    <>
+      <div className="rounded-xl shadow-xl m-2 p-10">
+        <ul key={todo._id}>
+          <li className="flex justify-center font-bold">{todo.title}</li>
+          <li className="flex justify-center">{todo.description}</li>
+        </ul>
+        <div className="shadow-md flex justify-between rounded-xl bg-gray-300">
+          <button className="m-2"
+            onClick={() => markDone(todo._id)}
+          >
+            {todo.completed ? "Completed" : "Mark as Done"}
+          </button>
+          <button className="m-2"
+            onClick={() => deleteTodo(todo._id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </>
   );
 
   const todosToRender = filterTodos.length === 0 ? todos : filterTodos;
 
   return (
-    <div>
+    <div className="grid md:grid-cols-3 sm:grid-cols-2">
       {todosToRender.map((todo) =>
         renderTodo(
           todo,

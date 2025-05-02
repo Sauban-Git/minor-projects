@@ -7,12 +7,20 @@ import { TodoFilter } from "./comp/TodoFilter";
 
 function App() {
   return (
-    <div>
+    <div className="grid md:grid-cols-4 gap-2">
       <RecoilRoot>
-        <NumTodo />
-        <CreateTodo />
-        <Todos />
-        <TodoFilter/>
+        <div className="col-span-1 flex justify-center">
+          <div className="md:fixed">
+            <NumTodo />
+            <CreateTodo />
+          </div>
+          <div className="fixed bottom-1">
+            <TodoFilter />
+          </div>
+        </div>
+        <div className="md:col-span-3">
+          <Todos />
+        </div>
       </RecoilRoot>
     </div>
   );

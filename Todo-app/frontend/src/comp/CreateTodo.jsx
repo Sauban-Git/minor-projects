@@ -2,8 +2,8 @@ import { memo, useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { todosAtoms } from "../store/atoms/AllTodo";
 
-export const CreateTodo = memo( function () {
-  const setTodos = useSetRecoilState(todosAtoms)
+export const CreateTodo = memo(function () {
+  const setTodos = useSetRecoilState(todosAtoms);
   const titleRef = useRef();
   const descRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,8 @@ export const CreateTodo = memo( function () {
   };
 
   return (
-    <div>
+    <div className="rounded-xl shadow-xl m-2"
+    >
       <input
         id="title"
         style={{
@@ -82,4 +83,4 @@ export const CreateTodo = memo( function () {
       </button>
     </div>
   );
-})
+});
